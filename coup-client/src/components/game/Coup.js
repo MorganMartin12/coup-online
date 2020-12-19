@@ -279,14 +279,19 @@ export default class Coup extends Component {
         if(this.state.playerIndex != null && !this.state.isDead) {
             influences = <>
             <p>Your Influences</p>
+            <div class="card-list">
                 {this.state.players[this.state.playerIndex].influences.map((influence, index) => {
-                    return  <div key={index} className="InfluenceUnitContainer">
-                                <span className="circle" style={{backgroundColor: `${this.influenceColorMap[influence]}`}}></span>
+                    /* Influences Card */
+                    // TODO: Replace "this" with what the card actually does
+                    return  <div key={index} class="card" style={{backgroundColor: `${this.influenceColorMap[influence]}`}}>
                                 <br></br>
                                 <h3>{influence}</h3>
+                                <h5>Your influence can do this</h5>
+                                <h5>Your influence can block this</h5>
                             </div>
                     })
                 }
+            </div>
             </>
             
             coins = <p>Coins: {this.state.players[this.state.playerIndex].money}</p>
