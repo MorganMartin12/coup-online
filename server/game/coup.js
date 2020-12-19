@@ -164,7 +164,12 @@ class CoupGame{
                                 }
                             }
                             console.log(res.prevAction)
-                            bind.applyAction(res.prevAction);
+                            if(res.counterAction.counterAction !=='block_block_foreign_aid'){
+                                bind.applyAction(res.prevAction);
+                            }
+                            else{
+                                bind.nextTurn();
+                            }
                         }
                     } else { //normal challenge
                         if(res.revealedCard == bind.actions[res.prevAction.action].influence) { // challenge failed
