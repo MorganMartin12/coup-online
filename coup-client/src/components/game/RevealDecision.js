@@ -14,6 +14,7 @@ export default class RevealDecision extends Component {
             block_foreign_aid: ["duke"],
             block_steal: ["ambassador", "captain"],
             block_assassinate: ["contessa"],
+            block_block_foreign_aid:["contessa"]
         }
     }
     
@@ -36,6 +37,7 @@ export default class RevealDecision extends Component {
         const influences = this.props.influences.map((x, index) => {
             return <button id={x} key={index} onClick={() => this.selectInfluence(x)}>{x}</button>
         })
+        console.log(this.act)
         return ( 
             <div>
                 <p>Your <b>{this.act}</b> has been challenged! If you don't reveal {this.actionMap[this.act].join(' or ')} you'll lose influence! </p>

@@ -65,6 +65,7 @@ class CoupGame{
                     bind.openChallenge(res.action, (bind.actions[res.action.action].blockableBy.length > 0))
                 } else if(res.action.action == 'foreign_aid') {
                     bind.isChallengeBlockOpen = true;
+                    console.log(res.action)
                     bind.gameSocket.emit("g-openBlock", res.action);
                 } else {
                     bind.applyAction(res.action)
@@ -109,7 +110,7 @@ class CoupGame{
             socket.on('g-blockDecision', (res) => {
                 console.log(154, res)
                 // res.prevAction.action, res.prevAction.target, res.prevAction.source, res.counterAction, res.blockee, res.blocker, res.isBlocking
-                if(bind.isChallengeBlockOpen) {
+                if(bind.isChallengeBlockOpen) { 
                     if(res.isBlocking) {
                         bind.closeChallenge();
                         bind.gameSocket.emit("g-addLog", `${res.blocker} blocked ${res.blockee}`)

@@ -48,7 +48,7 @@ const Actions = {
     },
     steal: {
         influence: CardNames.CAPTAIN,
-        blockableBy: [CardNames.AMBASSADOR, CardNames.AMBASSADOR],
+        blockableBy: [CardNames.AMBASSADOR, CardNames.CAPTAIN],
         isChallengeable: true,
         moneyDelta: 2 // EDGE CASE: if victim only has 1 or 0 coins
     }
@@ -57,6 +57,9 @@ const Actions = {
 const CounterActions = {
     block_foreign_aid: {
         influences: [CardNames.DUKE]
+    },
+    block_block_foreign_aid: {
+        influences:[CardNames.CONTESSA]
     },
     block_steal: {
         influences: [CardNames.AMBASSADOR, CardNames.CAPTAIN]
