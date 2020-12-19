@@ -148,6 +148,9 @@ class CoupGame{
                             bind.updatePlayers();
                             bind.isChooseInfluenceOpen = true;
                             bind.gameSocket.to(bind.nameSocketMap[res.challenger]).emit('g-chooseInfluence');
+                            if(res.counterAction.counterAction==='block_block_foreign_aid'){
+                                bind.applyAction(res.prevAction);
+                            }
                             bind.nextTurn();
                         } else { //challenge succeeded
                             bind.gameSocket.emit("g-addLog", `${res.challenger}'s challenge on ${res.challengee}'s block succeeded`)

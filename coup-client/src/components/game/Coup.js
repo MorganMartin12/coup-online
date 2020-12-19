@@ -35,8 +35,7 @@ export default class Coup extends Component {
              logs: [],
              isDead: false,
              waiting: true,
-             disconnected: false,
-             contessaBlock: false
+             disconnected: false
         }
         const bind = this;
 
@@ -132,8 +131,6 @@ export default class Coup extends Component {
             if(this.state.isDead) {
                 return
             }
-            console.log("HERE")
-            console.log(action.source)
             if(action.source !== bind.props.name) {
                 bind.setState({ blockingAction: action })
              } else {
@@ -285,13 +282,11 @@ export default class Coup extends Component {
         if(this.state.blockChallengeRes != null) {
             isWaiting = false;
             blockChallengeDecision = <BlockChallengeDecision closeOtherVotes={this.closeOtherVotes} doneBlockChallengeVote={this.doneChallengeBlockingVote} name={this.props.name} prevAction={this.state.blockChallengeRes.prevAction} counterAction={this.state.blockChallengeRes.counterAction} socket={this.props.socket} ></BlockChallengeDecision>
-            // if(this.state.contessaBlock) {
-            //     blockDecision = <BlockDecision contessaBlock={this.state.contessaBlock}  closeOtherVotes={this.closeOtherVotes} doneBlockVote={this.doneChallengeBlockingVote} name={this.props.name} action={this.state.blockingAction} socket={this.props.socket} ></BlockDecision>
-            // }
+        
         }
         if(this.state.blockingAction !== null) {
             isWaiting = false;
-            blockDecision = <BlockDecision contessaBlock={this.state.contessaBlock} closeOtherVotes={this.closeOtherVotes} doneBlockVote={this.doneChallengeBlockingVote} name={this.props.name} action={this.state.blockingAction} socket={this.props.socket} ></BlockDecision>
+            blockDecision = <BlockDecision closeOtherVotes={this.closeOtherVotes} doneBlockVote={this.doneChallengeBlockingVote} name={this.props.name} action={this.state.blockingAction} socket={this.props.socket} ></BlockDecision>
         }
         if(this.state.playerIndex != null && !this.state.isDead) {
             influences = <>
