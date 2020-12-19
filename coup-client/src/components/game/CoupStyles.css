@@ -185,6 +185,7 @@
   min-width: auto;
   padding: 1em;
   margin: 1em;
+  transition: .2s;
 }
 
 .card:hover {
