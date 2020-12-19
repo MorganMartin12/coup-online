@@ -4,7 +4,7 @@ export default class BlockChallengeDecision extends Component {
 
     block = (block, claim = null) => {
         const res = {
-            prevAction: this.props.counterAction,
+            prevAction: this.props.prevAction,
             counterAction: {
                 counterAction: block,
                 claim: 'contessa',

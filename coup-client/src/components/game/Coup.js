@@ -206,11 +206,22 @@ export default class Coup extends Component {
             console.log(res)
             this.props.socket.emit('g-challengeDecision', res);
         }else if(this.state.blockChallengeRes != null) { //BlockChallengeDecision
+            if(this.state.blockChallengeRes.counterAction)
+            { if(this.state.blockChallengeRes.counterAction.counterAction==="block_block_foreign_aid"){
+                const res = {
+                    action: this.state.blockChallengeRes.prevAction,
+                    isBlocking: false
+                }
+                console.log(res)
+                this.props.socket.emit('g-blockDecision', res)
+            }}
+            else {
             let res = {
                 isChallenging: false
             }
             console.log(res)
             this.props.socket.emit('g-blockChallengeDecision', res);
+        }
         }else if(this.state.blockingAction !== null) { //BlockDecision
             const res = {
                 action: this.state.blockingAction,
