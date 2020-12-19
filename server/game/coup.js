@@ -219,16 +219,22 @@ class CoupGame{
                         
                     }
                     if(res.coupAction !==null){
-                        if(res.influence='ambassador'){
+                        if(res.influence==='ambassador'){
                             bind.gameSocket.emit("g-addLog", `${res.playerName}'s life insurance gave him 4 coins`)
                             for(let i = 0; i < this.players.length; i++) {
                                 if(this.players[i].name == res.coupAction.target) {
                                     this.players[i].money+=4;
                                     break;
                                 }
+                        
                         }
                     }
+                    else if(res.influence==='assassin'){
+                        //TODO put in assassin code here
+                        // it has to let the player choose the influence while also allowing them to block with contessa 
+                        //and with out just calling the assassinate action because that gives others a chance to call them on assassin which shouldnt happen 
                 }
+            }
                     bind.isChooseInfluenceOpen = false;
                     bind.nextTurn();
                 }

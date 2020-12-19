@@ -190,7 +190,7 @@ export default class Coup extends Component {
         this.setState({ revealingRes: null });
     }
     doneChooseInfluence = () => {
-        this.setState({ isChoosingInfluence: false })
+        this.setState({ isChoosingInfluence: false, coupAction: null})
     }
     doneExchangeInfluence = () => {
         this.setState({ exchangeInfluence: null })
