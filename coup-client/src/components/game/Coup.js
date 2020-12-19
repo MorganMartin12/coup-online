@@ -35,7 +35,8 @@ export default class Coup extends Component {
              logs: [],
              isDead: false,
              waiting: true,
-             disconnected: false
+             disconnected: false,
+             coupAction: null
         }
         const bind = this;
 
@@ -141,8 +142,8 @@ export default class Coup extends Component {
             console.log(res)
             bind.setState({ revealingRes: res});
         });
-        this.props.socket.on('g-chooseInfluence', () => {
-            bind.setState({ isChoosingInfluence: true });
+        this.props.socket.on('g-chooseInfluence', (res) => {
+            bind.setState({ isChoosingInfluence: true, coupAction:res});
         });
         this.props.socket.on('g-closeChallenge', () => {
             bind.setState({ action: null });
@@ -266,7 +267,7 @@ export default class Coup extends Component {
         }
         if(this.state.isChoosingInfluence) {
             isWaiting = false;
-            chooseInfluenceDecision = <ChooseInfluence doneChooseInfluence={this.doneChooseInfluence} name ={this.props.name} socket={this.props.socket} influences={this.state.players.filter(x => x.name === this.props.name)[0].influences}></ChooseInfluence>
+            chooseInfluenceDecision = <ChooseInfluence coupAction={this.state.coupAction} doneChooseInfluence={this.doneChooseInfluence} name ={this.props.name} socket={this.props.socket} influences={this.state.players.filter(x => x.name === this.props.name)[0].influences}></ChooseInfluence>
         }
         if(this.state.action != null || this.state.blockChallengeRes != null || this.state.blockingAction !== null){
             pass = <button onClick={() => this.pass()}>Pass</button>
