@@ -147,7 +147,7 @@ class CoupGame{
                             }
                             bind.updatePlayers();
                             bind.isChooseInfluenceOpen = true;
-                            bind.gameSocket.to(bind.nameSocketMap[res.challenger]).emit('g-chooseInfluence');
+                            bind.gameSocket.to(bind.nameSocketMap[res.challenger]).emit('g-chooseInfluence',null);
                             if(res.counterAction.counterAction==='block_block_foreign_aid'){
                                 bind.applyAction(res.prevAction);
                             }
@@ -185,7 +185,7 @@ class CoupGame{
                             }
                             bind.updatePlayers();
                             bind.isChooseInfluenceOpen = true;
-                            bind.gameSocket.to(bind.nameSocketMap[res.challenger]).emit('g-chooseInfluence');
+                            bind.gameSocket.to(bind.nameSocketMap[res.challenger]).emit('g-chooseInfluence',null);
                             bind.applyAction(res.prevAction);
                         } else { // challenge succeeded
                             bind.gameSocket.emit("g-addLog", `${res.challenger}'s challenge on ${res.challengee} succeeded`)
@@ -216,7 +216,29 @@ class CoupGame{
                             bind.players[playerIndex].influences.splice(i,1);
                             break;
                         }
+                        
                     }
+                    if(res.coupAction !==null){
+                        if(res.influence==='ambassador'){
+                            bind.gameSocket.emit("g-addLog", `${res.playerName}'s life insurance gave him 4 coins`)
+                            for(let i = 0; i < this.players.length; i++) {
+                                if(this.players[i].name == res.coupAction.target) {
+                                    this.players[i].money+=4;
+                                    break;
+                                }
+                        
+                        }
+                    }
+                    else if(res.influence==='assassin'){
+                        const action = {
+                            action:'assassinate',
+                            target:res.coupAction.source,
+                            source:res.coupAction.target,
+                            assassinate_coup:true
+                        }
+                        bind.openChallenge(action, (bind.actions['assassinate'].blockableBy.length > 0))
+                }
+            }
                     bind.isChooseInfluenceOpen = false;
                     bind.nextTurn();
                 }
@@ -280,7 +302,9 @@ class CoupGame{
             console.log(this.players[targetIndex].socketID)
             this.gameSocket.to(this.players[targetIndex].socketID).emit("g-openBlock", action);
         }
+        if(!action.assassinate_coup){
         this.gameSocket.emit("g-openChallenge", action);
+        }
     }
 
     openBlockChallenge(counterAction, blockee, prevAction) {
@@ -323,7 +347,7 @@ class CoupGame{
             for(let i = 0; i < this.players.length; i++) {
                 if(this.players[i].name == target) {
                     this.isChooseInfluenceOpen = true;
-                    this.gameSocket.to(this.nameSocketMap[target]).emit('g-chooseInfluence');
+                    this.gameSocket.to(this.nameSocketMap[target]).emit('g-chooseInfluence',action);
                     break;
                 }
             }
@@ -340,7 +364,7 @@ class CoupGame{
             for(let i = 0; i < this.players.length; i++) {
                 if(this.players[i].name == target) {
                     this.isChooseInfluenceOpen = true;
-                    this.gameSocket.to(this.nameSocketMap[target]).emit('g-chooseInfluence');
+                    this.gameSocket.to(this.nameSocketMap[target]).emit('g-chooseInfluence',null);
                     break;
                 }
             }

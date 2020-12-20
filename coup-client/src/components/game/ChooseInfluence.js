@@ -6,9 +6,10 @@ export default class ChooseInfluence extends Component {
         // res.revealedCard, prevaction, counterAction, challengee, challenger, isBlock
         const res = {
             influence: influence,
-            playerName: this.props.name
+            playerName: this.props.name,
+            coupAction: this.props.coupAction
         }
-        console.log(res)
+        console.log(this.props)
         this.props.socket.emit('g-chooseInfluenceDecision', res);
         this.props.doneChooseInfluence();
     }

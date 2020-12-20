@@ -35,7 +35,8 @@ export default class Coup extends Component {
              logs: [],
              isDead: false,
              waiting: true,
-             disconnected: false
+             disconnected: false,
+             coupAction: null
         }
         const bind = this;
 
@@ -141,8 +142,8 @@ export default class Coup extends Component {
             console.log(res)
             bind.setState({ revealingRes: res});
         });
-        this.props.socket.on('g-chooseInfluence', () => {
-            bind.setState({ isChoosingInfluence: true });
+        this.props.socket.on('g-chooseInfluence', (res) => {
+            bind.setState({ isChoosingInfluence: true, coupAction:res});
         });
         this.props.socket.on('g-closeChallenge', () => {
             bind.setState({ action: null });
@@ -189,7 +190,7 @@ export default class Coup extends Component {
         this.setState({ revealingRes: null });
     }
     doneChooseInfluence = () => {
-        this.setState({ isChoosingInfluence: false })
+        this.setState({ isChoosingInfluence: false, coupAction: null})
     }
     doneExchangeInfluence = () => {
         this.setState({ exchangeInfluence: null })
@@ -204,20 +205,22 @@ export default class Coup extends Component {
             this.props.socket.emit('g-challengeDecision', res);
         }else if(this.state.blockChallengeRes != null) { //BlockChallengeDecision
             if(this.state.blockChallengeRes.counterAction)
-            { if(this.state.blockChallengeRes.counterAction.counterAction==="block_block_foreign_aid"){
+            { 
+            if(this.state.blockChallengeRes.counterAction.counterAction==="block_block_foreign_aid"){
                 const res = {
                     action: this.state.blockChallengeRes.prevAction,
                     isBlocking: false
                 }
                 console.log(res)
                 this.props.socket.emit('g-blockDecision', res)
-            }}
+            }
             else {
             let res = {
                 isChallenging: false
             }
             console.log(res)
             this.props.socket.emit('g-blockChallengeDecision', res);
+        }
         }
         }else if(this.state.blockingAction !== null) { //BlockDecision
             const res = {
@@ -266,7 +269,7 @@ export default class Coup extends Component {
         }
         if(this.state.isChoosingInfluence) {
             isWaiting = false;
-            chooseInfluenceDecision = <ChooseInfluence doneChooseInfluence={this.doneChooseInfluence} name ={this.props.name} socket={this.props.socket} influences={this.state.players.filter(x => x.name === this.props.name)[0].influences}></ChooseInfluence>
+            chooseInfluenceDecision = <ChooseInfluence coupAction={this.state.coupAction} doneChooseInfluence={this.doneChooseInfluence} name ={this.props.name} socket={this.props.socket} influences={this.state.players.filter(x => x.name === this.props.name)[0].influences}></ChooseInfluence>
         }
         if(this.state.action != null || this.state.blockChallengeRes != null || this.state.blockingAction !== null){
             pass = <button onClick={() => this.pass()}>Pass</button>
