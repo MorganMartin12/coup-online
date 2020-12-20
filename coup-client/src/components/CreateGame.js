@@ -176,7 +176,7 @@ export default class CreateGame extends Component {
                             let readyUnitColor = '#E46258'
                             if(item.isReady) {
                                 ready = <b>Ready!</b>
-                                readyUnitColor = '#73C373'
+                                readyUnitColor = '#258825'
                             } else {
                                 ready = <b>Not Ready</b>
                             }
