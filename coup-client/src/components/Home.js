@@ -15,7 +15,7 @@ export default class Home extends Component {
                     <li>Influence cards revealed and discarded are not shuffled back into the play deck and go into a discard pile.</li>
                     <li>Contessa can block a Duke's blocking ability</li>
                     <li>When couped by an opponent, if you are holding and reveal an assassin, the opponent will also be assassinated and must discard an infleunce. Your assassin will be discarded.</li>
-                    <li>When revealing an Ambassador aftering being couped, you gain 4 coins.</li>
+                    <li>When revealing an Ambassador after being couped, you gain 4 coins.</li>
                 </ul>
 
                 <img src={chicken} alt="chicken-leg"/>
