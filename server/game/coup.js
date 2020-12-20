@@ -230,9 +230,13 @@ class CoupGame{
                         }
                     }
                     else if(res.influence==='assassin'){
-                        //TODO put in assassin code here
-                        // it has to let the player choose the influence while also allowing them to block with contessa 
-                        //and with out just calling the assassinate action because that gives others a chance to call them on assassin which shouldnt happen 
+                        const action = {
+                            action:'assassinate',
+                            target:res.coupAction.source,
+                            source:res.coupAction.target,
+                            assassinate_coup:true
+                        }
+                        bind.openChallenge(action, (bind.actions['assassinate'].blockableBy.length > 0))
                 }
             }
                     bind.isChooseInfluenceOpen = false;
@@ -298,7 +302,9 @@ class CoupGame{
             console.log(this.players[targetIndex].socketID)
             this.gameSocket.to(this.players[targetIndex].socketID).emit("g-openBlock", action);
         }
+        if(!action.assassinate_coup){
         this.gameSocket.emit("g-openChallenge", action);
+        }
     }
 
     openBlockChallenge(counterAction, blockee, prevAction) {
