@@ -12,6 +12,7 @@ import EventLog from './EventLog';
 import ReactModal from 'react-modal';
 import CheatSheetModal from '../CheatSheetModal';
 import RulesModal from '../RulesModal';
+import CardInfo from './CardInfo';
 
 export default class Coup extends Component {
 
@@ -240,7 +241,13 @@ export default class Coup extends Component {
         contessa: '#E35646',
         ambassador: '#B4CA1F'
     }
-    
+    influenceActionMap = {
+        duke: {action:'Tax',block:'Foriegn Aid'},
+        captain: {action:"Steal",block:"Steal"},
+        assassin: {action:"Assassinate",onCoup:"Clapback"},
+        contessa:{block:"Assassin",action:"Block Duke's Block"},
+        ambassador:{action:"Exchange",block:"Steal",onCoup:"Life insurance"}
+    }
     render() {
         let actionDecision = null
         let currentPlayer = null
@@ -301,8 +308,7 @@ export default class Coup extends Component {
                     return  <div key={index} class="card" style={{backgroundColor: `${this.influenceColorMap[influence]}`}}>
                                 <br></br>
                                 <h3>{influence}</h3>
-                                <h5>Your influence can do this</h5>
-                                <h5>Your influence can block this</h5>
+                               <CardInfo influence = {this.influenceActionMap[influence]}/>
                             </div>
                     })
                 }
