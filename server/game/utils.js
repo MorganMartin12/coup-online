@@ -6,13 +6,8 @@ buildDeck = () => {
     for (let card of cardNames) {
         addToDeck(card, deck);
     }
-    for(let i = 0; i < deck.length*2; i++) {
-        const one = Math.floor(Math.random()*(deck.length-1));
-        const two = Math.floor(Math.random()*(deck.length-1));
-        let temp = deck[one];
-        deck[one] = deck[two];
-        deck[two] = temp;
-    }
+    deck = shuffleArray(deck)
+        
     return deck;
 }
 
@@ -26,19 +21,13 @@ function addToDeck(cardName, deck) {
     }
 }
 
-shuffleArray = (arr) => {
+const shuffleArray = (arr) => {
     if (!arr) {
         console.log(`arr must not be undefined. arr was ${arr}`);
     }
 
-    for(let i = 0; i < arr.length*2; i++) {
-        const one = i%arr.length
-        const two = Math.floor(Math.random()*(arr.length-1));
-        let temp = arr[one];
-        arr[one] = arr[two];
-        arr[two] = temp;
-    }
-    return arr;
+    const return_arr = arr.sort(()=>Math.random()-0.5)
+    return return_arr;
 }
 
 buildNameSocketMap = (players) => {

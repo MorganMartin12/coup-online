@@ -229,14 +229,16 @@ class CoupGame{
                         
                         }
                     }
-                    else if(res.influence==='assassin'){
+                    else if(res.influence==='assassin' ){
                         const action = {
                             action:'assassinate',
                             target:res.coupAction.source,
                             source:res.coupAction.target,
                             assassinate_coup:true
                         }
+                        if(!(this.players.length === 2 && this.players.find(player => player.name === res.coupAction.source).influences.length === 1 && this.players.find(player => player.name === res.coupAction.target).influences.length === 0)){
                         bind.openChallenge(action, (bind.actions['assassinate'].blockableBy.length > 0))
+                        }
                 }
             }
                     bind.isChooseInfluenceOpen = false;
