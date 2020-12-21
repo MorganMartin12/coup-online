@@ -348,7 +348,7 @@ export default class Coup extends Component {
                 <div className="InfluenceSection">
                     {influences}
                 </div>
-                <PlayerBoard players={this.state.players}></PlayerBoard>
+                <PlayerBoard players={this.state.players}> </PlayerBoard>
                 <div className="DecisionsSection">
                     {waiting}
                     {revealDecision}

@@ -54,6 +54,7 @@ buildPlayers = (players) => {
         delete x.chosen;
         x.money = 2;
         x.influences = [];
+        x.revealed = ['???','???'];
         x.isDead = false;
         x.color = colors.pop();
         delete x.isReady;

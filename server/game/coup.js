@@ -33,9 +33,24 @@ class CoupGame{
             this.players[i].money = 2;
             this.players[i].influences = [this.deck.pop(), this.deck.pop()];
             this.players[i].isDead = false;
+            this.players[i].revealed = ['???','???']
         }
     }
+    revealCard(challengeeIndex,index,replace) {
+        if(replace){
+            this.deck.push(this.players[challengeeIndex].influences[index])
+            this.deck = gameUtils.shuffleArray(this.deck);
+            this.players[challengeeIndex].influences.splice(index,1);
+            this.players[challengeeIndex].influences.push(this.deck.pop())
+            
+        }
+        else {
+            this.players[challengeeIndex].revealed.shift()
+            this.players[challengeeIndex].revealed.push(this.players[challengeeIndex].influences[index])
+            this.players[challengeeIndex].influences.splice(index,1);
+        }
 
+    }
     listen() {
 
         this.players.map(x => {
@@ -138,10 +153,7 @@ class CoupGame{
                             bind.gameSocket.emit("g-addLog", `${res.challenger}'s challenge on ${res.challengee}'s block failed`)
                             for(let i = 0; i < bind.players[challengeeIndex].influences.length; i++) { //revealed card needs to be replaced
                                 if(bind.players[challengeeIndex].influences[i] == res.revealedCard) {
-                                    //bind.deck.push(bind.players[challengeeIndex].influences[i]);
-                                    bind.deck = gameUtils.shuffleArray(bind.deck);
-                                    bind.players[challengeeIndex].influences.splice(i,1);
-                                    bind.players[challengeeIndex].influences.push(bind.deck.pop());
+                                    this.revealCard(challengeeIndex,i,true)
                                     break;
                                 }
                             }
@@ -157,9 +169,7 @@ class CoupGame{
                             bind.gameSocket.emit("g-addLog", `${res.challengee} lost their ${res.revealedCard}`)
                             for(let i = 0; i < bind.players[challengeeIndex].influences.length; i++) {
                                 if(bind.players[challengeeIndex].influences[i] == res.revealedCard) {
-                                    //bind.deck.push(bind.players[challengeeIndex].influences[i]);
-                                    bind.deck = gameUtils.shuffleArray(bind.deck);
-                                    bind.players[challengeeIndex].influences.splice(i,1);
+                                    bind.revealCard(challengeeIndex,i,false)
                                     break;
                                 }
                             }
@@ -176,10 +186,7 @@ class CoupGame{
                             bind.gameSocket.emit("g-addLog", `${res.challenger}'s challenge on ${res.challengee} failed`)
                             for(let i = 0; i < bind.players[challengeeIndex].influences.length; i++) { //revealed card needs to be replaced
                                 if(bind.players[challengeeIndex].influences[i] == res.revealedCard) {
-                                    //bind.deck.push(bind.players[challengeeIndex].influences[i]);
-                                    bind.deck = gameUtils.shuffleArray(bind.deck);
-                                    bind.players[challengeeIndex].influences.splice(i,1);
-                                    bind.players[challengeeIndex].influences.push(bind.deck.pop());
+                                   bind.revealCard(challengeeIndex,i,true)
                                     break;
                                 }
                             }
@@ -192,9 +199,7 @@ class CoupGame{
                             bind.gameSocket.emit("g-addLog", `${res.challengee} lost their ${res.revealedCard}`)
                             for(let i = 0; i < bind.players[challengeeIndex].influences.length; i++) { // 
                                 if(bind.players[challengeeIndex].influences[i] == res.revealedCard) {
-                                    //bind.deck.push(bind.players[challengeeIndex].influences[i]);
-                                    bind.deck = gameUtils.shuffleArray(bind.deck);
-                                    bind.players[challengeeIndex].influences.splice(i,1);
+                                    bind.revealCard(challengeeIndex,i,false)
                                     break;
                                 }
                             }
@@ -211,9 +216,7 @@ class CoupGame{
                     bind.gameSocket.emit("g-addLog", `${res.playerName} lost their ${res.influence}`)
                     for(let i = 0; i < bind.players[playerIndex].influences.length; i++) {
                         if(bind.players[playerIndex].influences[i] == res.influence) {
-                            //bind.deck.push(bind.players[playerIndex].influences[i]);
-                            bind.deck = gameUtils.shuffleArray(bind.deck);
-                            bind.players[playerIndex].influences.splice(i,1);
+                            bind.revealCard(playerIndex,false)
                             break;
                         }
                         
