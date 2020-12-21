@@ -216,7 +216,7 @@ class CoupGame{
                     bind.gameSocket.emit("g-addLog", `${res.playerName} lost their ${res.influence}`)
                     for(let i = 0; i < bind.players[playerIndex].influences.length; i++) {
                         if(bind.players[playerIndex].influences[i] == res.influence) {
-                            bind.revealCard(playerIndex,false)
+                            bind.revealCard(playerIndex,i,false)
                             break;
                         }
                         
