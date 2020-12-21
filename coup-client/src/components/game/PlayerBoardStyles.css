@@ -2,7 +2,8 @@
     background-color: #73C373;
     margin-bottom: 20px;
     padding: 5px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     margin-right: 10px;
     margin-left: 10px;
     border-radius: 5px;
@@ -12,15 +13,20 @@
     margin-top: 10px;
     font-weight: lighter;
     color: white;
-    line-height: 80%;
+    line-height: 10%;
 }
 
 .PlayerBoardItem p{
-    line-height: 50%;
+    line-height: 10%;
     font-weight: regular;
     color: white;
 }
 
 .PlayerBoardContainer {
-    
+    display: flex;
+    justify-content: center;
+}
+.InfluenceUnitContainer {
+    display:flex;
+    flex-direction: row;
 }
