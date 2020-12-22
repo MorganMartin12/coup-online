@@ -25,7 +25,7 @@ export default function PlayerBoard(props) {
     if(props.players.length > 1 ) {
         boardItems = props.players.map((player, index) =>
             <span className="PlayerBoardItem" style={{ backgroundColor: `${player.color}` }} key={index}>
-                <h2>{player.name}</h2>
+                <h2 class="pb-3">{player.name}</h2>
                 <p>Coins: {player.money}</p>
                 <p>Influences: {player.influences.length}</p>
                 {/* <p>{player.influences.join(', ')}</p> */}

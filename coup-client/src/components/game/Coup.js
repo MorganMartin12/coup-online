@@ -306,9 +306,8 @@ export default class Coup extends Component {
                     /* Influences Card */
                     // TODO: Replace "this" with what the card actually does
                     return  <div key={index} class="card" style={{backgroundColor: `${this.influenceColorMap[influence]}`}}>
-                                <br></br>
-                                <h3>{influence}</h3>
-                               <CardInfo influence = {this.influenceActionMap[influence]}/>
+                                <h3 class="py-3">{influence}</h3>
+                                <CardInfo influence = {this.influenceActionMap[influence]}/>
                             </div>
                     })
                 }
@@ -324,7 +323,7 @@ export default class Coup extends Component {
             return (
                 <div className="GameContainer">
                     <div className="GameHeader">
-                        <div className="PlayerInfo">
+                        <div className="PlayerInfo pt-3">
                             <p>You are: {this.props.name}</p>
                             {coins}
                         </div>
@@ -340,7 +339,7 @@ export default class Coup extends Component {
         return (
             <div className="GameContainer">
                 <div className="GameHeader">
-                    <div className="PlayerInfo">
+                    <div className="PlayerInfo pt-3">
                         <p>You are: {this.props.name}</p>
                         {coins}
                     </div>
@@ -351,11 +350,11 @@ export default class Coup extends Component {
                     <CheatSheetModal/>
                     <EventLog logs={this.state.logs}></EventLog>
                 </div>
-                <div className="InfluenceSection">
+                <div className="InfluenceSection pt-3">
                     {influences}
                 </div>
                 <PlayerBoard players={this.state.players}> </PlayerBoard>
-                <div className="DecisionsSection">
+                <div className="DecisionsSection pt-3">
                     {waiting}
                     {revealDecision}
                     {chooseInfluenceDecision}
