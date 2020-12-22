@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import chicken from "../assets/Chicken.svg"
 import RulesModal from './RulesModal';
-import logo from '../assets/Coup-removebg-preview.png'
+import logo from '../assets/logo.png'
 import '../index.css'
 export default class Home extends Component {
     render() {
