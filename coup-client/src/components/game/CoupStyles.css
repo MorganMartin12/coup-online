@@ -182,15 +182,22 @@
 }
 
 .card {
-  display: flex;
   position: relative;
   border-radius: 10px;
-  flex-direction: column;
-  height: 200px;
-  min-width: 150px;
+  height: 315px;
+  min-width: 200px;
   padding: 1em;
   margin: 1em;
   transition: .2s;
+}
+.card-image {
+  grid-area: image;
+}
+.card-text {
+  grid-area: textArea;
+}
+.card-header {
+  grid-area: header;
 }
 
 .card:hover {
@@ -273,13 +280,15 @@
 
 .GameHeader {
     position: relative;
-    height: 22VH;
+    height: 10VH;
 }
 
 .GameContainer {
     text-align: center;
 }
-
+.DecisionButtonsContainer{
+  margin-bottom:20px
+}
 .circle {
     height: 30px;
     width: 30px;
