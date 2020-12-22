@@ -1,7 +1,8 @@
 .PlayerBoardItem{
     background-color: #73C373;
+    font-weight: bold;
     margin-bottom: 20px;
-    padding: 1px;
+    padding: .5em;
     display: flex;
     flex-direction: column;
     margin-right: 10px;
@@ -19,7 +20,7 @@
 .PlayerBoardItem p{
     line-height: 10%;
     font-weight: regular;
-
+    text-align: center;
     color: white;
 }
 
@@ -27,8 +28,18 @@
     display: flex;
     justify-content: center;
 }
+
+/* Sets up discard infleunce flexbox */
 .InfluenceUnitContainer {
     display:flex;
-    height: auto;
     flex-direction: row;
+    height: auto;
+    justify-content: center;
+    
+}
+
+/* Centers discarded card text on flexbox*/
+.InfluenceUnitContainer p{
+    flex: auto;
+    margin: 1em;
 }

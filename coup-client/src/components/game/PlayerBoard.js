@@ -30,9 +30,8 @@ export default function PlayerBoard(props) {
                 <p>Influences: {player.influences.length}</p>
                 {/* <p>{player.influences.join(', ')}</p> */}
 
-                
                 {
-                  influenceMap(player)  
+                    influenceMap(player)  
                 }
             </span>
         );
