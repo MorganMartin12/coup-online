@@ -1,7 +1,7 @@
 .PlayerBoardItem{
     background-color: #73C373;
     margin-bottom: 20px;
-    padding: 5px;
+    padding: 1px;
     display: flex;
     flex-direction: column;
     margin-right: 10px;
@@ -19,6 +19,7 @@
 .PlayerBoardItem p{
     line-height: 10%;
     font-weight: regular;
+
     color: white;
 }
 
@@ -28,5 +29,6 @@
 }
 .InfluenceUnitContainer {
     display:flex;
+    height: auto;
     flex-direction: row;
 }

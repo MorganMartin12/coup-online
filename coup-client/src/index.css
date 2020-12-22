@@ -97,14 +97,19 @@ button{
   min-width: 100px;
   border-radius: 5px;
   font-family: 'Muli', sans-serif;
-  background-color: #258825;
+  background-color: #01012b;
   border: none;
-  color: white;
+  color: #d1f7ff;
   margin: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
+}
+.logo {
+  width: 100%;
+  height: auto;
+
 }
 
 .RoomCode {
