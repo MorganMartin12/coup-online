@@ -253,11 +253,11 @@ export default class Coup extends Component {
         ambassador: '#B4CA1F'
     }
     influenceActionMap = {
-        duke: {action:'Tax',block:'Foriegn Aid'},
-        captain: {action:"Steal",block:"Steal"},
-        assassin: {action:"Assassinate",onCoup:"Clapback"},
-        contessa:{block:"Assassin",action:"Block Duke's Block"},
-        ambassador:{action:"Exchange",block:"Steal",onCoup:"Life insurance"}
+        duke:    {name:'duke',action:'Tax',block:'Foriegn Aid'},
+        captain: {name:'captain',action:"Steal",block:"Steal"},
+        assassin:{name:'assassin',action:"Assassinate",onCoup:"Clapback"},
+        contessa:{name:'contessa',block:"Assassin",action:"Block Duke's Block"},
+      ambassador:{name:'ambassador',action:"Exchange",block:"Steal",onCoup:"Life insurance"}
     }
     render() {
         let actionDecision = null
@@ -318,7 +318,6 @@ export default class Coup extends Component {
                     // TODO: Replace "this" with what the card actually does
                     return  <div key={index} class="card" style={{backgroundColor: `${this.influenceColorMap[influence]}`}}>
                                 <br></br>
-                                <h3>{influence}</h3>
                                <CardInfo influence = {this.influenceActionMap[influence]}/>
                             </div>
                     })

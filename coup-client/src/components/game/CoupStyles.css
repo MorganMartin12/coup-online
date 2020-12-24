@@ -185,13 +185,14 @@
   position: relative;
   border-radius: 10px;
   height: 315px;
-  min-width: 200px;
+  width: 200px;
   padding: 1em;
   margin: 1em;
   transition: .2s;
 }
 .card-image {
-  grid-area: image;
+  padding: 50px 10px 10px 10px;
+  width: 70%;
 }
 .card-text {
   grid-area: textArea;
