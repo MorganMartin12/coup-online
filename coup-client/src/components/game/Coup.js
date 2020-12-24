@@ -334,7 +334,7 @@ export default class Coup extends Component {
             return (
                 <div className="GameContainer">
                     <div className="GameHeader">
-                        <div className="PlayerInfo">
+                        <div className="PlayerInfo pt-3">
                             <p>You are: {this.props.name}</p>
                             {coins}
                         </div>
@@ -350,7 +350,7 @@ export default class Coup extends Component {
         return (
             <div className="GameContainer">
                 <div className="GameHeader">
-                    <div className="PlayerInfo">
+                    <div className="PlayerInfo pt-3">
                         <p>You are: {this.props.name}</p>
                         {coins}
                     </div>
@@ -361,11 +361,11 @@ export default class Coup extends Component {
                     <CheatSheetModal/>
                     <EventLog logs={this.state.logs}></EventLog>
                 </div>
-                <div className="InfluenceSection">
+                <div className="InfluenceSection pt-3">
                     {influences}
                 </div>
                 <PlayerBoard players={this.state.players}> </PlayerBoard>
-                <div className="DecisionsSection">
+                <div className="DecisionsSection pt-3">
                     {waiting}
                     {revealDecision}
                     {chooseInfluenceDecision}

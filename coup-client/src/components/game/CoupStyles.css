@@ -89,6 +89,7 @@
 
 .RulesContent h3 {
   text-decoration: underline;
+  padding-bottom: 0.25em;
 }
 
 .RulesContainer {
@@ -103,6 +104,7 @@
   /* line-height: 12px; */
   /* height: fit-content; */
   overflow-y: hidden;
+  padding: 1em;
 }
 
 .InfoIcon {
