@@ -124,7 +124,18 @@ export default class Coup extends Component {
                 return
             }
             if(blockChallengeRes.counterAction.source !== bind.props.name) {
+                console.log(bind.state.players)
+                console.log(bind.state.players.find((player)=>player.name===bind.props.name))
+                console.log(bind.state.players.find((player)=>player.name===bind.props.name).length)
+              if(blockChallengeRes.prevAction.assassinate_coup && blockChallengeRes.prevAction.source === bind.props.name && bind.state.players.find((player)=>player.name===bind.props.name).influences.length===1){
+                let res = {
+                    isChallenging: false
+                }
+                this.props.socket.emit('g-blockChallengeDecision', res);
+              }
+              else{
               bind.setState({ blockChallengeRes})
+              }
             } else {
                 bind.setState({ blockChallengeRes: null }) 
             }
